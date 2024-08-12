@@ -7,7 +7,7 @@
 - **1:**
 Each book has the following attributes
 Title
-Authr
+Author
 and Description
 
 - **2:**
