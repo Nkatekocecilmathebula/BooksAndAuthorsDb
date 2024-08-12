@@ -4,13 +4,13 @@
 1. Create Books Table
 2. Create Authors Table
 
-- **1:**
+**1:**
 Each book has the following attributes
 Title
 Author
 and Description
 
-- **2:**
+**2:**
 Each Author has the following attributes
 First name
 Last name
