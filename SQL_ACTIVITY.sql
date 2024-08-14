@@ -4,7 +4,7 @@
 
 CREATE TABLE authors
 (
-   AuthorID NUMBER PRIMARY KEY(10),
+   AuthorID NUMBER(10) PRIMARY KEY,
    firstName varchar2(15),
    lastName varchar2(20),
    nationality ENUM('South African', 'HongKong')
