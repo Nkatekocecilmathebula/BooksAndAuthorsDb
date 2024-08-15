@@ -1,29 +1,23 @@
-
-
--- Authors table
+-- Creating tables
 
 CREATE TABLE authors
 (
-   AuthorID NUMBER PRIMARY KEY AUTOINCREMENT,
+   authorID INTEGER PRIMARY KEY AUTOINCREMENT,
    firstName varchar2(15),
    lastName varchar2(20),
-   nationality ENUM('South African', 'HongKong')
+   nationality TEXT
 );
-
-
-
--- Books table
 
 CREATE TABLE books
 (
-   BookID NUMBER PRIMARY KEY AUTOINCREMENT,
+   bookID INTEGER PRIMARY KEY AUTOINCREMENT,
    title varchar2(80),
    description TEXT,
-   Author_ID NUMBER,
-   FOREIGN KEY (Author_ID) REFERENCES authors(AuthorID)
+   Author_ID INTEGER,
+   FOREIGN KEY (Author_ID) REFERENCES authors(authorID)
 );
 
--- INSER DATA INTO AUTHORS TABLE
+-- Inserting data 
 
 INSERT INTO authors(firstName, lastName, nationality) VALUES
 ('Nkateko', 'Mathebula', 'South African'),
@@ -31,8 +25,6 @@ INSERT INTO authors(firstName, lastName, nationality) VALUES
 ('Granny', 'Mathonsi', 'HongKong'),
 ('Respect', 'Ngobeni', 'South African'),
 ('Cecil', 'Sithole', 'HongKong');
-
--- INSER DATA INTO BOOKS TABLE
 
 INSERT INTO books (title, description, Author_ID) VALUES
 ('Nothing but the truth', 'A childhood experience', '1'),
@@ -43,36 +35,28 @@ INSERT INTO books (title, description, Author_ID) VALUES
 ('JavaScript programming', 'Perfecting the front-end', '3'),
 ('Python', 'Code with the best', '3'),
 ('The Luncheon', 'Dinner with a stranger', '2'),
-('The deceiver', 'Only lies will set you free', '1'),
+('The deceiver', 'Only lies will set you free', '3'),
 ('Tell the truth', 'Love and honesty', '3');
 
-
---QUERIES
+-- Queries
 
 Select COUNT(*) AS SumOfBooks
 From books;
 
-Select a.firstName, a.lastName, COUNT(b.BookID) AS authorBookCount
-From authors a;
-Left Join books b ON a.AuthorID = b.AuthorID
-Group By a.AuthorID
+Select a.firstName, a.lastName, COUNT(b.bookID) AS authorBookCount
+From books b
+Join authors a ON a.authorID = b.Author_ID
+Group By a.authorID
 Order By authorBookCount DESC
 LIMIT 1;
 
 
 
-Select a.nationality, COUNT(b.BookID) AS TheNumberOfBooks
-From authors a
-Join books b ON a.AuthorID = b.AuthorID
-Group By a.nationality;
-
-
-
-
-
-
-
-
+Select a.nationality, COUNT(b.bookID) AS theNumberOfBooks
+From books b
+Join authors a ON b.Author_ID = a.authorID
+Group By a.nationality
+Order By theNumberOfBooks;
 
 
 
