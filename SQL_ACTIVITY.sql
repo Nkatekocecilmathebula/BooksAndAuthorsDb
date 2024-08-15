@@ -4,7 +4,7 @@
 
 CREATE TABLE authors
 (
-   AuthorID NUMBER(10) PRIMARY KEY,
+   AuthorID NUMBER PRIMARY KEY AUTOINCREMENT,
    firstName varchar2(15),
    lastName varchar2(20),
    nationality ENUM('South African', 'HongKong')
@@ -16,11 +16,11 @@ CREATE TABLE authors
 
 CREATE TABLE books
 (
-   BookID NUMBER(10) PRIMARY KEY,
+   BookID NUMBER PRIMARY KEY AUTOINCREMENT,
    title varchar2(80),
    description TEXT,
-   AuthorID NUMBER,
-   FOREIGN KEY (AuthorID) REFERENCES authors(AuthorID)
+   Author_ID NUMBER,
+   FOREIGN KEY (Author_ID) REFERENCES authors(AuthorID)
 );
 
 -- INSER DATA INTO AUTHORS TABLE
@@ -34,7 +34,7 @@ INSERT INTO authors(firstName, lastName, nationality) VALUES
 
 -- INSER DATA INTO BOOKS TABLE
 
-INSERT INTO books (title, description, AuthorsID) VALUES
+INSERT INTO books (title, description, Author_ID) VALUES
 ('Nothing but the truth', 'A childhood experience', '1'),
 ('A road less travelled', 'Making my own decisions', '2'),
 ('An angry bird', 'A drink to remember', '3'),
